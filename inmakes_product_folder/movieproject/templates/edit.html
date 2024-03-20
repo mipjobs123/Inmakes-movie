@@ -1,0 +1,7 @@
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+<!--    used to render all form fields as HTML <p> elements (paragraphs)-->
+
+    <input type="submit">
+</form>
