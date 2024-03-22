@@ -33,7 +33,7 @@ def add_movie(request):
 def update(request,id):
     if request.method == 'POST':
        movie=Movie.objects.get(id=id)
-       form=MovieForm(request.POST or None, request.FILES,instance=movie)
+       form=MovieForm(request.POST , request.FILES,instance=movie)
        if form.is_valid():
           form.save()
        return redirect('detail',id=movie.id)
