@@ -31,11 +31,15 @@ def add_movie(request):
 
 
 def update(request,id):
-    movie=Movie.objects.get(id=id)
-    form=MovieForm(request.POST or None, request.FILES,instance=movie)
-    if form.is_valid():
-        form.save()
-        return redirect('/')
+    if request.method == 'POST':
+       movie=Movie.objects.get(id=id)
+       form=MovieForm(request.POST or None, request.FILES,instance=movie)
+       if form.is_valid():
+          form.save()
+       return redirect('detail',id=movie.id)
+    else:
+        movie = Movie.objects.get(id=id)
+        form = MovieForm(instance=movie)
     return render(request,'edit.html',{'form':form,'movie':movie})
 
 
