@@ -36,7 +36,7 @@ def update(request,id):
        form=MovieForm(request.POST , request.FILES,instance=movie)
        if form.is_valid():
           form.save()
-       return redirect('detail',id=movie.id)
+       return redirect('movieapp:detail',id=movie.id)
     else:
         movie = Movie.objects.get(id=id)
         form = MovieForm(instance=movie)
